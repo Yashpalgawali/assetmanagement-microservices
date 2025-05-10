@@ -1,0 +1,44 @@
+package com.example.demo.employee_service.service.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.employee_service.entity.Employee;
+import com.example.demo.employee_service.exceptinos.ResourceNotFoundException;
+import com.example.demo.employee_service.repository.EmployeeRepository;
+import com.example.demo.employee_service.service.IEmployeeService;
+
+import lombok.AllArgsConstructor;
+
+@Service("empserv")
+@AllArgsConstructor
+public class EmployeeServiceImpl implements IEmployeeService {
+
+	private final EmployeeRepository emprepo; 
+	
+	@Override
+	public Employee saveEmployee(Employee emp) {
+
+		return emprepo.save(emp);
+	}
+
+	@Override
+	public Employee getEmployeeById(Integer id) {
+		 
+		return emprepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("No employee found for given ID "+id));
+	}
+
+	@Override
+	public int updateEmployee(Employee emp) {
+		Employee employee = emprepo.save(emp);
+		return employee!=null ? 1 : 0;
+	}
+
+	@Override
+	public List<Employee> getAllEmployees() {
+	 
+		return emprepo.findAll();
+	}
+		
+}

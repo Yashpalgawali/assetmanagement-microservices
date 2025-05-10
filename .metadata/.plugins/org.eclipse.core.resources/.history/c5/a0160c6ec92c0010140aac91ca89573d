@@ -1,0 +1,15 @@
+package com.example.demo.department_service.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+public class DepartmentDto {
+
+	private Integer dept_id;
+	
+	private String dept_name;
+	
+	private Company company;
+}

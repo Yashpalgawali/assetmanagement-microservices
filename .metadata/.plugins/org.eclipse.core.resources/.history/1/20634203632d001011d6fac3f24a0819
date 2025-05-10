@@ -1,0 +1,5 @@
+package com.example.demo.asset_service.dto;
+
+public class ResponseDto {
+
+}

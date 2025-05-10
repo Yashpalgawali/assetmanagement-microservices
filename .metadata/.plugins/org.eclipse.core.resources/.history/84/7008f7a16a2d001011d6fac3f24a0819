@@ -1,0 +1,5 @@
+package com.example.demo.designation_service.service;
+
+public interface IDesignationService {
+
+}

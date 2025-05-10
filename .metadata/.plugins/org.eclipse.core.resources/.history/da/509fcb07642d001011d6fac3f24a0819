@@ -1,0 +1,34 @@
+package com.example.demo.asset_service.service.impl;
+
+import java.util.List;
+
+import com.example.demo.asset_service.entity.Asset;
+import com.example.demo.asset_service.service.IAssetService;
+
+public class AssetServiceImpl implements IAssetService {
+
+	@Override
+	public Asset saveAsset(Asset asset) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Asset> getAllAssets() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateAsset(Asset asset) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Asset getAssetById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

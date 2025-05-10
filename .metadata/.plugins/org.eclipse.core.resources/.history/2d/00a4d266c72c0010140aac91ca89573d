@@ -1,0 +1,5 @@
+package com.example.demo.department_service.proxy;
+
+public class CompanyServiceProxy {
+
+}

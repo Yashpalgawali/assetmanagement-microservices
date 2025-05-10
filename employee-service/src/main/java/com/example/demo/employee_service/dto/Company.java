@@ -1,0 +1,12 @@
+package com.example.demo.employee_service.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor 
+@Data @NoArgsConstructor 
+public class Company {
+	private Integer company_id;
+	private String comp_name ;
+}

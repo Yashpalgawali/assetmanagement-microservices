@@ -1,0 +1,5 @@
+package com.example.demo.asset_type_service.service;
+
+public interface IAssetTypeService {
+
+}

@@ -1,0 +1,11 @@
+package com.example.demo.employee_service.dto;
+
+import com.example.demo.employee_service.entity.AssetType;
+
+public class AssetDto {
+	private Integer asset_id;
+
+	private String asset_name;
+
+	private AssetType atype;
+}

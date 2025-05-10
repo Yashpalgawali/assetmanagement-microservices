@@ -1,0 +1,34 @@
+package com.example.demo.employee_service.service.impl;
+
+import java.util.List;
+
+import com.example.demo.employee_service.entity.Employee;
+import com.example.demo.employee_service.service.IEmployeeService;
+
+public class EmployeeServiceImpl implements IEmployeeService {
+
+	@Override
+	public Employee saveEmployee(Employee emp) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Employee getEmployeeById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Employee updateEmployee(Employee emp) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Employee> getAllEmployees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

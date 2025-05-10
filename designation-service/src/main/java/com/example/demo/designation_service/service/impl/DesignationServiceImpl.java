@@ -1,0 +1,44 @@
+package com.example.demo.designation_service.service.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.designation_service.entity.Designation;
+import com.example.demo.designation_service.exceptions.ResourceNotFoundException;
+import com.example.demo.designation_service.repository.IDesignationRepository;
+import com.example.demo.designation_service.service.IDesignationService;
+
+import lombok.AllArgsConstructor;
+
+@Service("desigserv")
+@AllArgsConstructor
+public class DesignationServiceImpl implements IDesignationService {
+
+	private final IDesignationRepository desigrepo;
+	
+	@Override
+	public Designation saveDesignation(Designation designation) {
+	
+		return desigrepo.save(designation);
+	}
+
+	@Override
+	public Designation getDesignationById(Integer id) {
+	
+		return desigrepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("No desgination found for given ID "+id));
+	}
+
+	@Override
+	public int updateDesignation(Designation designation) {
+		Designation result = desigrepo.save(designation);
+		return result!=null ? 1 : 0;
+	}
+
+	@Override
+	public List<Designation> getAllDesignations() {
+	
+		return desigrepo.findAll();
+	}
+
+}

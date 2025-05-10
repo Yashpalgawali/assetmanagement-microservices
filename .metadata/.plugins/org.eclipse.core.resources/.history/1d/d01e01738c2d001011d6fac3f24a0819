@@ -1,0 +1,16 @@
+package com.example.demo.department_service.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.department_service.entity.Department;
+
+@Repository("deptrepo")
+public interface DepartmentRepository extends JpaRepository<Department, Integer> {
+
+	@Modifying
+	@Query("UPDATE Department d SET d.dept_name=:dept_name WHERE d.dept_id=:dept_id")
+	public int updateDepartment(Integer dept_id, String dept_name);
+}

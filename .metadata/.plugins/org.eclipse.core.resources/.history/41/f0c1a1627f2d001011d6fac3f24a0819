@@ -1,0 +1,82 @@
+package com.example.demo.employee_service.controller;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.employee_service.dto.EmployeeDto;
+import com.example.demo.employee_service.dto.ResponseDto;
+import com.example.demo.employee_service.entity.Designation;
+import com.example.demo.employee_service.entity.Employee;
+import com.example.demo.employee_service.proxy.DesignationServiceProxy;
+import com.example.demo.employee_service.service.IEmployeeService;
+
+import lombok.AllArgsConstructor;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping("employee")
+public class EmployeeController {
+
+	private final IEmployeeService empserv;
+	private final DesignationServiceProxy designationproxy;
+	
+	@PostMapping("/")
+	public ResponseEntity<ResponseDto> saveEmployee(@RequestBody Employee employee) {
+
+		Employee emp = empserv.saveEmployee(employee);
+		if (emp != null) {
+			return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(HttpStatus.CREATED.toString(),
+					"Employee " + emp.getEmp_name() + " is saved successfully"));
+		} else {
+			return ResponseEntity.status(HttpStatus.CREATED).body(null);
+		}
+	}
+
+	@GetMapping("/")
+	public ResponseEntity<List<EmployeeDto>> getAllEmployees() {
+		List<Employee> emplist = empserv.getAllEmployees();
+		List<EmployeeDto> empListDto = emplist.stream().map(emp -> {
+			EmployeeDto empdto = new EmployeeDto();
+			empdto.setEmp_id(emp.getEmp_id());
+			empdto.setEmp_name(emp.getEmp_name());
+			
+			ResponseEntity<Designation> designation = designationproxy.getDesignationById(emp.getDesignation_id());
+			
+			empdto.setDesignation(designation.getBody());
+			return empdto;
+			
+		}).collect(Collectors.toList());
+		
+		return ResponseEntity.status(HttpStatus.OK).body(empListDto);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id) {
+		
+		Employee emp = empserv.getEmployeeById(id);
+		return ResponseEntity.status(HttpStatus.OK).body(emp);
+	}
+	
+	@PutMapping("/")
+	public ResponseEntity<ResponseDto> updateEmployee(@RequestBody Employee employee) {
+
+		int result = empserv.updateEmployee(employee);
+		if (result > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(HttpStatus.OK.toString(),
+					"Employee " + employee.getEmp_name() + " is updated successfully"));
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(new ResponseDto(
+					HttpStatus.NOT_MODIFIED.toString(), "Employee " + employee.getEmp_name() + " is not updated "));
+		}
+	}
+}

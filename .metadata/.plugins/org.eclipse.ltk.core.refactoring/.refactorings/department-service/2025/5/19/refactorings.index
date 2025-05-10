@@ -1,0 +1,10 @@
+1746789372733	Rename type 'CompanyDto'
+1746790135387	Extract local variable 'deptList'
+1746790261449	Extract local variable 'company'
+1746790364537	Extract local variable 'dept_list'
+1746791877037	Move compilation units
+1746791920753	Copy compilation unit
+1746859882841	Copy compilation units
+1746859920023	Copy compilation unit
+1746873382556	Extract local variable 'department'
+1746873661803	Extract local variable 'dept'

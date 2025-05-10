@@ -1,0 +1,33 @@
+package com.example.demo.asset_type_service.service;
+
+import java.util.List;
+
+import com.example.demo.asset_type_service.entity.AssetType;
+
+public class AssetTypeService implements IAssetTypeService {
+
+	@Override
+	public AssetType saveAssetType(AssetType atype) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AssetType getAssetTypeById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateAssetType(AssetType atype) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<AssetType> getAllAssetTypes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
