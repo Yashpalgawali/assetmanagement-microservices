@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AssetType {
-	private Integer asset_type_id;
+	private String asset_type_id;
 	
 	private String asset_type;
 }

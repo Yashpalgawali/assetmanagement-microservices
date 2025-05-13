@@ -5,12 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
 public class Company {
-	private Integer company_id;
+
+ 
+	private String company_id;
 
 	private String comp_name;
+
 }
+

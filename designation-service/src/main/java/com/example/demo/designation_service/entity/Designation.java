@@ -1,18 +1,14 @@
 package com.example.demo.designation_service.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name="tbl_designation")
+@Document(collection = "designation")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,9 +16,7 @@ import lombok.Setter;
 public class Designation {
 
 	@Id
-	@SequenceGenerator(name="desig_seq",allocationSize = 1,initialValue = 1)
-	@GeneratedValue(generator = "desig_seq",strategy = GenerationType.IDENTITY)
-	private Integer designation_id;
+	private String designation_id;
 	
 	private String designation;
 }

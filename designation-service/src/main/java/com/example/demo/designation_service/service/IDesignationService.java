@@ -8,10 +8,10 @@ public interface IDesignationService {
 
 	public Designation saveDesignation(Designation designation);
 	
-	public Designation getDesignationById(Integer id);
+	public List<Designation> getAllDesignations();
+	
+	public Designation getDesignationById(String id);
 	
 	public int updateDesignation(Designation designation);
-	
-	public List<Designation> getAllDesignations();
 	
 }

@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Department {
+public class Department { 
 
 	@Id
 	@SequenceGenerator(name="dept_seq",allocationSize = 1,initialValue = 1)
@@ -26,5 +26,5 @@ public class Department {
 	
 	private String dept_name;
 	
-	private Integer comp_id; 
+	private String company_id; 
 }

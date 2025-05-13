@@ -2,6 +2,8 @@ package com.in28minutes.microservices.company_service.service.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.in28minutes.microservices.company_service.entity.Company;
@@ -9,18 +11,23 @@ import com.in28minutes.microservices.company_service.exception.ResourceNotFoundE
 import com.in28minutes.microservices.company_service.repository.CompanyRepository;
 import com.in28minutes.microservices.company_service.service.CompanyService;
 
-import lombok.AllArgsConstructor;
-
 @Service("compserv")
-@AllArgsConstructor
 public class CompanyServImpl implements CompanyService {
 
 	private final CompanyRepository comprepo;
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	
+	public CompanyServImpl(CompanyRepository comprepo) {
+		super();
+		this.comprepo = comprepo;
+	}
+
 	@Override
 	public Company saveCompany(Company company) {
 		 
-		return comprepo.save(company);
+		Company savedCompany = comprepo.save(company);
+		logger.info("Saved company is {} ",savedCompany);
+		return savedCompany;
 	}
 
 	@Override
@@ -30,7 +37,7 @@ public class CompanyServImpl implements CompanyService {
 	}
 
 	@Override
-	public Company getCompanyById(Integer id) {
+	public Company getCompanyById(String id) {
 		 
 		return comprepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("No company Found for given ID "+id));
 	}
@@ -38,7 +45,8 @@ public class CompanyServImpl implements CompanyService {
 	@Override
 	public int updateCompany(Company company) {
 		 
-		return 0;
+		Company compObj = comprepo.save(company);
+		return compObj!=null ? 1 : 0;
 	}
 
 }

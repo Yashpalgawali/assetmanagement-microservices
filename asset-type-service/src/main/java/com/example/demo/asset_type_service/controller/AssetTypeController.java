@@ -48,7 +48,7 @@ public class AssetTypeController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<AssetType> getAssettypeById(@PathVariable Integer id) {
+	public ResponseEntity<AssetType> getAssettypeById(@PathVariable String id) {
 		AssetType assettype = assetypeserv.getAssetTypeById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(assettype);
 	}

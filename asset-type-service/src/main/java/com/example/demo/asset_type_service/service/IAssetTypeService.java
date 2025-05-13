@@ -8,7 +8,7 @@ public interface IAssetTypeService {
 
 	public AssetType saveAssetType(AssetType atype);
 	
-	public AssetType getAssetTypeById(Integer id);
+	public AssetType getAssetTypeById(String id);
 	
 	public int updateAssetType(AssetType atype);
 	

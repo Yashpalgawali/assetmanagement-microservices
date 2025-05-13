@@ -71,8 +71,9 @@ public class EmployeeController {
 			empdto.setEmp_name(emp.getEmp_name());
 
 			ResponseEntity<Designation> designation = designationproxy.getDesignationById(emp.getDesignation_id());
-			ResponseEntity<AssetDto> asset = assetproxy.getAssetById(emp.getAsset_id());
+//			ResponseEntity<AssetDto> asset = assetproxy.getAssetById(emp.getAsset_id());
 			ResponseEntity<DepartmentDto> deptDto = deptproxy.getDepartmentDtoById(emp.getDept_id());
+			ResponseEntity<AssetDto> asset = assetproxy.getAssetById(1);
 			
 			empdto.setDesignation(designation.getBody());
 			empdto.setAssetdto(asset.getBody());
@@ -89,12 +90,20 @@ public class EmployeeController {
 	public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Integer id) {
 
 		Employee emp = empserv.getEmployeeById(id);
+		
 		ResponseEntity<Designation> designation = designationproxy.getDesignationById(emp.getDesignation_id());
+		//ResponseEntity<AssetDto> asset = assetproxy.getAssetById(emp.getAsset_id());
+		ResponseEntity<AssetDto> asset = assetproxy.getAssetById(1);
+		ResponseEntity<DepartmentDto> deptDto = deptproxy.getDepartmentDtoById(emp.getDept_id());
+		
 		EmployeeDto empDto = new EmployeeDto();
+		
 		empDto.setEmp_id(id);
 		empDto.setEmp_name(emp.getEmp_name());
 		empDto.setDesignation(designation.getBody());
-
+		empDto.setAssetdto(asset.getBody());
+		empDto.setDepartmentDto(deptDto.getBody());
+		
 		return ResponseEntity.status(HttpStatus.OK).body(empDto);
 	}
 

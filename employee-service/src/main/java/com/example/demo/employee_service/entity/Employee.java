@@ -1,18 +1,21 @@
 package com.example.demo.employee_service.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="tbl_employee")
+@Table(name = "tbl_employee")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,15 +23,26 @@ import lombok.Setter;
 public class Employee {
 
 	@Id
-	@SequenceGenerator(name="emp_seq",allocationSize = 1,initialValue = 1)
-	@GeneratedValue(generator = "emp_seq",strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name = "emp_seq", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "emp_seq", strategy = GenerationType.IDENTITY)
 	private Integer emp_id;
-	
+
 	private String emp_name;
-	 
+
 	private Integer designation_id;
-	
-	private Integer asset_id;
-	
+
 	private Integer dept_id;
+
+	@Transient
+	private String multi_assets;
+
+	@Transient
+	private List<String> asset_ids;
+
+	@Transient
+	private String comments;
+
+	@Transient
+	private String assigned_assets;
+
 }

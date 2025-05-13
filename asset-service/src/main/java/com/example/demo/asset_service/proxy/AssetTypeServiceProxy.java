@@ -11,6 +11,6 @@ import com.example.demo.asset_service.entity.AssetType;
 public interface AssetTypeServiceProxy {
 	
 	@GetMapping("/assettype/{id}")
-	public ResponseEntity<AssetType> getAssettypeById(@PathVariable Integer id);
+	public ResponseEntity<AssetType> getAssettypeById(@PathVariable String id);
 	
 }

@@ -24,15 +24,15 @@ public class AssetTypeService implements IAssetTypeService {
 	}
 
 	@Override
-	public AssetType getAssetTypeById(Integer id) {
+	public AssetType getAssetTypeById(String id) {
 
 		return assettyperepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("No Asset Type is found for given ID "+id));
 	}
 
 	@Override
 	public int updateAssetType(AssetType atype) {
-
-		return 0;
+		AssetType result = assettyperepo.save(atype);
+		return result!=null ? 1 : 0;		
 	}
 
 	@Override

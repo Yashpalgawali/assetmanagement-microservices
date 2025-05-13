@@ -5,40 +5,52 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.designation_service.entity.Designation;
-import com.example.demo.designation_service.exceptions.ResourceNotFoundException;
-import com.example.demo.designation_service.repository.IDesignationRepository;
+import com.example.demo.designation_service.exception.ResourceNotFoundException;
+import com.example.demo.designation_service.repository.DesignationRepository;
 import com.example.demo.designation_service.service.IDesignationService;
 
-import lombok.AllArgsConstructor;
-
 @Service("desigserv")
-@AllArgsConstructor
 public class DesignationServiceImpl implements IDesignationService {
 
-	private final IDesignationRepository desigrepo;
+	private final DesignationRepository desigrepo; 
 	
+	/**
+	 * @param desigrepo
+	 */
+	public DesignationServiceImpl(DesignationRepository desigrepo) {
+		super();
+		this.desigrepo = desigrepo;
+	}
+
 	@Override
 	public Designation saveDesignation(Designation designation) {
-	
+		 
 		return desigrepo.save(designation);
 	}
 
 	@Override
-	public Designation getDesignationById(Integer id) {
-	
-		return desigrepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("No desgination found for given ID "+id));
+	public List<Designation> getAllDesignations() {
+		 
+		List<Designation> desigList = desigrepo.findAll();
+		if(desigList.size()>0) {
+			return desigList;
+		}	
+		else {
+			throw new ResourceNotFoundException("No Items found");
+		}
+		
+	}
+
+	@Override
+	public Designation getDesignationById(String id) {
+		 
+		return desigrepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("No Designation found for given ID "+id));
 	}
 
 	@Override
 	public int updateDesignation(Designation designation) {
-		Designation result = desigrepo.save(designation);
-		return result!=null ? 1 : 0;
-	}
-
-	@Override
-	public List<Designation> getAllDesignations() {
-	
-		return desigrepo.findAll();
+		Designation desig = desigrepo.save(designation);
+		return desig!=null ? 1 : 0;
 	}
 
 }

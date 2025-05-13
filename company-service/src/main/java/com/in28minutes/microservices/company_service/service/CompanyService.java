@@ -8,6 +8,6 @@ public interface CompanyService {
 
 	public Company saveCompany(Company company);
 	public List<Company> getAllCompanies();
-	public Company getCompanyById(Integer id);
+	public Company getCompanyById(String id);
 	public int updateCompany(Company company);
 }
