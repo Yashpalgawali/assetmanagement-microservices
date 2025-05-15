@@ -11,5 +11,5 @@ import com.example.demo.employee_service.entity.Designation;
 public interface DesignationServiceProxy {
 
 	@GetMapping("/designation/{id}")
-	public ResponseEntity<Designation> getDesignationById(@PathVariable Integer id);
+	public ResponseEntity<Designation> getDesignationById(@PathVariable String id);
 }

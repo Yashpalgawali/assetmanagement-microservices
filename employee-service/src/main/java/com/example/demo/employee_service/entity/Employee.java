@@ -29,9 +29,9 @@ public class Employee {
 
 	private String emp_name;
 
-	private Integer designation_id;
+	private String designation_id;
 
-	private Integer dept_id;
+	private String dept_id;
 
 	@Transient
 	private String multi_assets;

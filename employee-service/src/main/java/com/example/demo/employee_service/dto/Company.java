@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor 
 @Data @NoArgsConstructor 
 public class Company {
-	private Integer company_id;
+	private String company_id;
 	private String comp_name ;
 }

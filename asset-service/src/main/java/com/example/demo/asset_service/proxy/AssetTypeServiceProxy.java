@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.asset_service.entity.AssetType;
 
-@FeignClient(name = "asset-type-service",url = "localhost:9000")
+@FeignClient(name = "asset-type-service")
 public interface AssetTypeServiceProxy {
 	
 	@GetMapping("/assettype/{id}")

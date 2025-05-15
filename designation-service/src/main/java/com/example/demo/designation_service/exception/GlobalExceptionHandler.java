@@ -14,10 +14,12 @@ import com.example.demo.designation_service.dto.ErrorResponseDto;
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<ErrorResponseDto> handleResourceNotFoundException(ResourceNotFoundException exception,WebRequest request) {
-		
-		ErrorResponseDto errorDto = new ErrorResponseDto(request.getDescription(false), HttpStatus.NOT_FOUND, exception.getMessage(), LocalDateTime.now());
-		
+	public ResponseEntity<ErrorResponseDto> handleResourceNotFoundException(ResourceNotFoundException exception,
+			WebRequest request) {
+
+		ErrorResponseDto errorDto = new ErrorResponseDto(request.getDescription(false), HttpStatus.NOT_FOUND,
+				exception.getMessage(), LocalDateTime.now());
+
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDto);
 	}
 }

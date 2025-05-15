@@ -38,7 +38,7 @@ public class CompanyServImpl implements CompanyService {
 
 	@Override
 	public Company getCompanyById(String id) {
-		 
+	 
 		return comprepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("No company Found for given ID "+id));
 	}
 

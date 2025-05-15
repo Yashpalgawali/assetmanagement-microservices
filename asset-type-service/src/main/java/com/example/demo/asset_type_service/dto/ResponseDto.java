@@ -1,15 +1,18 @@
 package com.example.demo.asset_type_service.dto;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ResponseDto {
 
-	private String statusCode;
+	 String statusCode;
 	
-	private String responseMessage; 
+	 String responseMessage; 
 }

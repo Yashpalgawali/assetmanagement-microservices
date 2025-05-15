@@ -62,7 +62,7 @@ public class CompanyController {
 	@GetMapping("/{id}")
 	@Retry(name = "getCompanyById", fallbackMethod = "hardCodedResponse")
 	public ResponseEntity<Company> getCompanyById(@PathVariable String id) {
-
+		 
 		Company comp = compserv.getCompanyById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(comp);
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.department_service.entity.Department;
+import com.example.demo.department_service.exception.ResourceNotFoundException;
 import com.example.demo.department_service.repository.DepartmentRepository;
 import com.example.demo.department_service.service.IDepartmentService;
 
@@ -30,15 +31,14 @@ public class DepartmentServImpl implements IDepartmentService {
 
 	@Override
 	public Department getDepartmentById(Integer id) {
-		// TODO Auto-generated method stub
-		return deptrepo.findById(id).get();
-	}
 
+		return deptrepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("No Department Found for given ID "+id ));
+	}
+	
 	@Override
- 
 	public int updateDepartment(Department dept) {
-		
-		return deptrepo.updateDepartment(dept.getDept_id(), dept.getDept_name());
+		Department department = deptrepo.save(dept);
+		return department!=null ? 1 :0;			
 	}
 
 }

@@ -16,6 +16,6 @@ public class Asset {
 	
 	private String asset_name;
 	
-	private Integer asset_type_id;
+	private String asset_type_id;
 	
 }

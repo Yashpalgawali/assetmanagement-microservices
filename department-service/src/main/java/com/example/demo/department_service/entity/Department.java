@@ -6,10 +6,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 @Entity
 @Table(name="tbl_department")
@@ -17,14 +19,15 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Department { 
 
 	@Id
 	@SequenceGenerator(name="dept_seq",allocationSize = 1,initialValue = 1)
 	@GeneratedValue(generator = "dept_seq",strategy = GenerationType.IDENTITY)
-	private Integer dept_id;
+	Integer dept_id;
 	
-	private String dept_name;
+	String dept_name;
 	
-	private String company_id; 
+	String company_id; 
 }

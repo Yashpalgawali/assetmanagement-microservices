@@ -10,11 +10,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Company {
-
  
 	private String company_id;
 
 	private String comp_name;
 
 }
-

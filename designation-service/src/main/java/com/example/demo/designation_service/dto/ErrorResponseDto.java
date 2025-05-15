@@ -4,22 +4,25 @@ import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ErrorResponseDto {
 
-	public String apiPath;
+	 String apiPath;
 	
-	public HttpStatus errorStatus;
+	 HttpStatus errorStatus;
 	
-	public String errorMessage;
+	 String errorMessage;
 	
-	public LocalDateTime errortTime;
+	 LocalDateTime errortTime;
 }

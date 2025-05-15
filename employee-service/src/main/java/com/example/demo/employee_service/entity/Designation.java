@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Designation {
 	
-	private Integer designation_id;
+	private String designation_id;
 	private String designation;
 }
