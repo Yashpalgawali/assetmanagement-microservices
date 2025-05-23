@@ -41,4 +41,29 @@ public class AssetServiceImpl implements IAssetService {
 		return assetrepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Asset not found for given Id"+id));
 	}
 
+	@Override
+	public int increaseAssetQuantity(Integer assetid) {
+		
+		int quantity = assetrepo.getAssetQuantityByAssetId(assetid);
+		if(quantity<=0) {
+			quantity +=1;
+			return assetrepo.updateAssetQuantity(assetid,quantity);
+		}
+		else {
+			return 0;
+		}		
+	}
+
+	@Override
+	public int decreaseAssetQuantity(Integer assetid) {
+		int quantity = assetrepo.getAssetQuantityByAssetId(assetid);
+		if(quantity!=0) {
+			quantity -=1;
+			return assetrepo.updateAssetQuantity(assetid,quantity);	
+		}
+		else {
+			return 0;
+		}			 
+	}
+	
 }

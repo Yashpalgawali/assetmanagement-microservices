@@ -41,6 +41,11 @@ public class ApiGatewayConfiguration {
 							.filters(f -> f.stripPrefix(1))
 							.uri("lb://designation-service")
 					    )
-				.build();
+						.route( p-> 
+								p.path("/employee-service/**")
+								.filters(f -> f.stripPrefix(1))
+								.uri("lb://employee-service")
+						)
+						.build();
 	}
 }

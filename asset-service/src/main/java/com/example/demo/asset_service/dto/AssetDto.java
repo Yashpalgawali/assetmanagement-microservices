@@ -12,8 +12,7 @@ import lombok.NoArgsConstructor;
 public class AssetDto {
 
 	private Integer asset_id;
-
 	private String asset_name;
-
+	private int qty ;
 	private AssetType atype;
 }

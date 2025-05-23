@@ -9,10 +9,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 @Entity
 @Table(name = "tbl_employee")
@@ -20,29 +23,31 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
 public class Employee {
 
 	@Id
 	@SequenceGenerator(name = "emp_seq", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "emp_seq", strategy = GenerationType.IDENTITY)
-	private Integer emp_id;
+	Integer emp_id;
 
-	private String emp_name;
+	String emp_name;
 
-	private String designation_id;
+	String designation_id;
 
-	private String dept_id;
-
-	@Transient
-	private String multi_assets;
+	String dept_id;
 
 	@Transient
-	private List<String> asset_ids;
+	String multi_assets;
 
 	@Transient
-	private String comments;
+	List<String> asset_ids;
 
 	@Transient
-	private String assigned_assets;
+	String comments;
+
+	@Transient
+	String assigned_assets;
 
 }

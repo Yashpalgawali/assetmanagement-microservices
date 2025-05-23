@@ -25,6 +25,8 @@ import com.example.demo.department_service.entity.Department;
 import com.example.demo.department_service.proxy.CompanyServiceProxy;
 import com.example.demo.department_service.service.IDepartmentService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 
 @RestController
@@ -61,7 +63,9 @@ public class DepartmentController {
 	}
 
 	@GetMapping("/")
-	@Retry(name = "getCompanyByIdForDeptList", fallbackMethod = "handleCompanyResponse")
+//	@Retry(name = "getCompanyByIdForDeptList", fallbackMethod = "handleCompanyResponse")
+	@CircuitBreaker(name = "default" , fallbackMethod = "handleCompanyResponse")
+	@RateLimiter(name = "getCompanyByIdForDeptListRateLimiter")
 	public ResponseEntity<List<DepartmentDto>> getAllDepartments() {
 		List<Department> deptList = deptserv.getAllDepartments();
 

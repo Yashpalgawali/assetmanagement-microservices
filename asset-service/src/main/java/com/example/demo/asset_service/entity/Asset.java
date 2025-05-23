@@ -28,4 +28,5 @@ public class Asset {
 	
 	private String asset_type_id;
 	
+	private int qty;
 }

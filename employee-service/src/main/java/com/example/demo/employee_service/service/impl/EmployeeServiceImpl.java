@@ -1,89 +1,100 @@
 package com.example.demo.employee_service.service.impl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.employee_service.dto.ResponseDto;
 import com.example.demo.employee_service.entity.AssignedAssets;
 import com.example.demo.employee_service.entity.Employee;
 import com.example.demo.employee_service.exceptinos.ResourceNotFoundException;
+import com.example.demo.employee_service.proxy.AssetServiceProxy;
+import com.example.demo.employee_service.repository.AssignedAssetsRepository;
 import com.example.demo.employee_service.repository.EmployeeRepository;
 import com.example.demo.employee_service.service.IEmployeeService;
 
 import lombok.AllArgsConstructor;
 
 @Service("empserv")
-@AllArgsConstructor
+
 public class EmployeeServiceImpl implements IEmployeeService {
 
-	private final EmployeeRepository emprepo; 
+	private final EmployeeRepository emprepo;
+
+	private final AssignedAssetsRepository assignedassetrepo;
 	
+	private final AssetServiceProxy assetproxy;
+	
+	DateTimeFormatter tday = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	DateTimeFormatter ttime = DateTimeFormatter.ofPattern("hh:mm:ss");
+	
+	
+	public EmployeeServiceImpl(EmployeeRepository emprepo, AssignedAssetsRepository assignedassetrepo,
+			AssetServiceProxy assetproxy) {
+		super();
+		this.emprepo = emprepo;
+		this.assignedassetrepo = assignedassetrepo;
+		this.assetproxy = assetproxy;
+	}
+
 	@Override
 	public Employee saveEmployee(Employee emp) {
 
-		String asset_ids = emp.getAsset_ids().toString().replace("[", "").replace("]", "").replace(" ", "");
-		String[] asset_arr = asset_ids.split(",");
-//		for(int i=0;i<asset_arr.length;i++){
-//			
-//			AssignedAssets assignasset = new AssignedAssets();
-//			int qty =0;
-//			Long astid = Long.valueOf(asset_arr[i]);
-//			Assets ast = new Assets();
-//			Assets getasset = assetserv.getAssetsById(astid);
-//			
-//			AssetType atype = new AssetType();
-//			atype = atypeserv.getAssetTypeById(getasset.getAtype().getType_id());
-//			
-//			ast.setAtype(atype);
-//			
-//			ast.setAsset_id(astid);
-//			ast.setAsset_name(getasset.getAsset_name());
-//			ast.setAsset_number(getasset.getAsset_number());
-//			ast.setModel_number(getasset.getModel_number());
-//			ast.setQuantity(getasset.getQuantity());
-//			
-//			assignasset.setEmployee(emp);
-//			assignasset.setAsset(ast);
-//		
-//			assignasset.setAssign_date(ddate.format(LocalDateTime.now()));
-//			assignasset.setAssign_time(dtime.format(LocalDateTime.now()));
-//			
-//			isassigned = assignserv.saveAssignedAssets(assignasset);
-//			
-//			if(isassigned!=null) {	
-//				qty = (Integer)assetserv.getAssetQuantityByAssetId(astid);
-//				qty-=1;
-//				assetserv.updateAssetQuantityByAssetId(astid, ""+qty);
-//				AssetAssignHistory ahist = new AssetAssignHistory();
-//			
-//				ahist.setAsset(ast);
-//				ahist.setEmployee(emp);
-//				ahist.setOperation_date(ddate.format(LocalDateTime.now()));
-//				ahist.setOperation_time(dtime.format(LocalDateTime.now()));
-//				ahist.setOperation("Asset Assigned");
-//				
-//				ahistserv.saveAssetAssignHistory(ahist);
-//			}
-//		}
-		return emprepo.save(emp);
+		Employee savedEmployee = emprepo.save(emp);
+
+		if(savedEmployee!=null) {
+			String asset_ids = emp.getAsset_ids().toString().replace("[", "").replace("]", "").replace(" ", "");
+			String[] asset_arr = asset_ids.split(",");
+			for(int i=0;i<asset_arr.length;i++) {
+				 
+				AssignedAssets assign = new AssignedAssets();
+				
+				int ast_id = Integer.parseInt(asset_arr[i]);
+				
+				assign.setEmployee(savedEmployee);
+				assign.setAsset_id(ast_id);
+				assign.setAssign_date(tday.format(LocalDateTime.now()));
+				assign.setAssign_time(ttime.format(LocalDateTime.now()));
+				if(assign!=null) {
+					ResponseEntity<ResponseDto> qtyResult = assetproxy.decreaseAssetQuantity(ast_id);
+					HttpStatusCode res = qtyResult.getStatusCode();
+					if(res.is2xxSuccessful()) {
+						
+					}else {
+						
+					}
+				}
+			}
+			
+			return savedEmployee;
+		}
+		else {
+			return null;
+		}
 	}
 
 	@Override
 	public Employee getEmployeeById(Integer id) {
-		 
-		return emprepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("No employee found for given ID "+id));
+
+		return emprepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("No employee found for given ID " + id));
 	}
 
 	@Override
 	public int updateEmployee(Employee emp) {
 		Employee employee = emprepo.save(emp);
-		return employee!=null ? 1 : 0;
+		return employee != null ? 1 : 0;
 	}
 
 	@Override
 	public List<Employee> getAllEmployees() {
-	 
+
 		return emprepo.findAll();
 	}
-		
+
 }

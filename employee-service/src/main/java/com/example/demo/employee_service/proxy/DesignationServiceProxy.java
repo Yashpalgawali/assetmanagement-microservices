@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.employee_service.entity.Designation;
 
-@FeignClient(name =  "designation-service", url = "localhost:9200")
+@FeignClient(name =  "designation-service")
 public interface DesignationServiceProxy {
 
 	@GetMapping("/designation/{id}")

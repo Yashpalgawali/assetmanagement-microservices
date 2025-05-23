@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy>
-    <typeInfo handle="=department-service/C:\/Users\/chetan\/.m2\/repository\/org\/springframework\/data\/spring-data-jpa\/3.3.11\/spring-data-jpa-3.3.11.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework.data=/=/maven.artifactId=/spring-data-jpa=/=/maven.version=/3.3.11=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.data.jpa.repository(JpaRepository.class[JpaRepository" modifiers="1537" timestamp="1745819296925"/>
-    <typeInfo handle="=designation-service/C:\/Users\/chetan\/.m2\/repository\/org\/springframework\/data\/spring-data-mongodb\/4.3.11\/spring-data-mongodb-4.3.11.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework.data=/=/maven.artifactId=/spring-data-mongodb=/=/maven.version=/4.3.11=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.data.mongodb.repository(MongoRepository.class[MongoRepository" modifiers="1537" timestamp="1745819341260"/>
-    <typeInfo handle="=designation-service/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.example.demo.designation_service.service{IDesignationService.java[IDesignationService" modifiers="513" timestamp="1747134934304"/>
-</typeInfoHistroy>
+<typeInfoHistroy/>

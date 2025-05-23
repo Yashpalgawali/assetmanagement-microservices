@@ -78,6 +78,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<name>yashpalgawali123/${project.artifactId}:v1</name>
+					</image>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

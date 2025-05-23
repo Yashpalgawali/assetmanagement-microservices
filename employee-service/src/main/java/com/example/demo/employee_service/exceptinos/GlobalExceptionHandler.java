@@ -25,4 +25,17 @@ public class GlobalExceptionHandler {
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}
+	
+	@ExceptionHandler(ContentNotFoundException.class)
+	public ResponseEntity<ErrorResponseDto> handleContentNotFoundException(ContentNotFoundException exception,WebRequest request ){
+	
+		ErrorResponseDto error = new ErrorResponseDto(
+					request.getDescription(false),
+					HttpStatus.NOT_FOUND,
+					exception.getMessage(),
+					LocalDateTime.now()
+				);
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+	}
 }

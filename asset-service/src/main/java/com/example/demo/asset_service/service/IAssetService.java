@@ -13,4 +13,8 @@ public interface IAssetService {
 	public int updateAsset(Asset asset);
 	
 	public Asset getAssetById(Integer id);
+	
+	public int increaseAssetQuantity(Integer assetid);
+	
+	public int decreaseAssetQuantity(Integer assetid);
 }
